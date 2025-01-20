@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atualização Automática de Gráficos</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+    }
+    canvas {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gráficos IoT com Atualização Automática</h1>
+  <div>
+    <canvas id="chart1"></canvas>
+    <canvas id="chart2"></canvas>
+    <canvas id="chart3"></canvas>
+    <canvas id="chart4"></canvas>
+  </div>
+
+  <script>
+    // Configuração inicial dos gráficos
+    const chartConfig = (label, color) => ({
+      type: 'line',
+      data: {
+        labels: [], // Inicialmente vazio
+        datasets: [{
+          label: label,
+          data: [],
+          borderColor: color,
+          backgroundColor: color + '33', // Cor com transparência
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: { title: { display: true, text: 'Tempo' } },
+          y: { title: { display: true, text: 'Valores' } }
+        }
+      }
+    });
+
+    // Criação dos gráficos
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+
+    const chart1 = new Chart(ctx1, chartConfig('Temperature', '#FF0000'));
+    const chart2 = new Chart(ctx2, chartConfig('Humidity', '#00FF00'));
+    const chart3 = new Chart(ctx3, chartConfig('Light', '#0000FF'));
+    const chart4 = new Chart(ctx4, chartConfig('Soil Moisture', '#FFA500'));
+
+    // Função para buscar dados (simula uma API, pode substituir pela sua)
+    async function fetchData() {
+      // Aqui você pode substituir pelos seus endpoints reais
+      const temperature = Math.random() * 30; // Simulação
+      const humidity = Math.random() * 100;
+      const light = Math.random() * 1000;
+      const soilMoisture = Math.random() * 100;
+
+      const currentTime = new Date().toLocaleTimeString();
+
+      // Adicionar dados aos gráficos
+      addData(chart1, currentTime, temperature);
+      addData(chart2, currentTime, humidity);
+      addData(chart3, currentTime, light);
+      addData(chart4, currentTime, soilMoisture);
+    }
+
+    // Função para adicionar dados ao gráfico
+    function addData(chart, label, data) {
+      if (chart.data.labels.length > 10) {
+        chart.data.labels.shift(); // Remove o mais antigo
+        chart.data.datasets[0].data.shift();
+      }
+      chart.data.labels.push(label); // Adiciona o novo tempo
+      chart.data.datasets[0].data.push(data); // Adiciona o novo valor
+      chart.update(); // Atualiza o gráfico
+    }
+
+    // Atualizar os gráficos a cada 10 segundos
+    setInterval(fetchData, 10000);
+  </script>
+</body>
+</html>
