@@ -64,30 +64,30 @@
 </head>
 <body>
   <header>
-    <h1>Gráficos IoT - STEM Education</h1>
+    <h1>IoT Data Collection</h1>
   </header>
 
   <div class="container">
     <div class="chart-card">
-      <h2>Temperatura (°C)</h2>
+      <h2>Temperature (°C)</h2>
       <canvas id="chart1"></canvas>
     </div>
     <div class="chart-card">
-      <h2>Humidade Relativa (%)</h2>
+      <h2>Relative humidity (%)</h2>
       <canvas id="chart2"></canvas>
     </div>
     <div class="chart-card">
-      <h2>Nível de Luz</h2>
+      <h2>Light level (%)</h2>
       <canvas id="chart3"></canvas>
     </div>
     <div class="chart-card">
-      <h2>Humidade do Solo</h2>
+      <h2>Soil moisture (%)</h2>
       <canvas id="chart4"></canvas>
     </div>
   </div>
 
   <footer>
-    <p>&copy; 2025 STEM Education. Todos os direitos reservados.</p>
+    <p>&copy; 2025 IK Digital Labs. More information https://www.jpik.com/ik-digital-labs/ All rights reserved.</p>
   </footer>
 
   <script>
@@ -101,10 +101,10 @@
 
     // Gráficos e configurações
     const chartConfigs = [
-      { element: 'chart1', label: 'Temperatura (°C)', color: 'rgba(1, 1, 223, 1)' },
-      { element: 'chart2', label: 'Humidade Relativa (%)', color: 'rgba(64, 255, 0, 1)' },
-      { element: 'chart3', label: 'Nível de Luz', color: 'rgba(255, 255, 0, 1)' },
-      { element: 'chart4', label: 'Humidade do Solo', color: 'rgba(136, 106, 8, 1)' }
+      { element: 'chart1', label: 'Temperature (°C)', color: 'rgba(1, 1, 223, 1)' },
+      { element: 'chart2', label: 'Relative humidity (%)', color: 'rgba(64, 255, 0, 1)' },
+      { element: 'chart3', label: 'Light level (%)', color: 'rgba(255, 255, 0, 1)' },
+      { element: 'chart4', label: 'Soil moisture (%)', color: 'rgba(136, 106, 8, 1)' }
     ];
 
     // Referências aos gráficos
