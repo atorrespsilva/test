@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gráficos IoT - STEM Education</title>
+  <title>ik Digital Labs - IoT Data Collection</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
@@ -47,9 +47,9 @@
       text-align: center;
     }
 
-    canvas {
+    canvas, iframe {
       max-width: 100%;
-      height: auto;
+      height: 260px; /* Dimensões iguais aos gráficos */
     }
 
     footer {
@@ -84,6 +84,12 @@
       <h2>Soil moisture</h2>
       <canvas id="chart4"></canvas>
     </div>
+
+    <!-- Novo iframe com a borda -->
+    <div class="chart-card">
+      <h2>ThingSpeak Map</h2>
+      <iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/2390978/maps/channel_show"></iframe>
+    </div>
   </div>
 
   <footer>
@@ -117,7 +123,7 @@
           const response = await fetch(urls[i]);
           const data = await response.json();
           const labels = data.feeds.map(feed => new Date(feed.created_at).toLocaleTimeString());
-          const values = data.feeds.map(feed => parseFloat(feed[`field${i + 1}`]));
+          const values = data.feeds.map(feed => parseFloat(feed[`field${i + 1}`])) ;
 
           // Atualizar ou criar o gráfico
           if (charts[i]) {
